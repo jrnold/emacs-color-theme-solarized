@@ -188,7 +188,7 @@ in order to expand or compress the tonal range displayed."
            (font-lock-string-face ((t (:foreground ,cyan))))
            (font-lock-type-face ((t (:foreground ,yellow))))
            (font-lock-variable-name-face ((t (:foreground ,blue))))
-           (font-lock-warning-face ((t (:foreground ,red :weight ,bold))))
+           (font-lock-warning-face ((t (:foreground ,red :weight ,bold :background ,back))))
            (font-lock-doc-face ((t (:foreground ,cyan :slant ,italic))))
            (font-lock-color-constant-face ((t (:foreground ,green))))
            (font-lock-comment-delimiter-face
