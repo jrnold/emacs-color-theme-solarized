@@ -313,7 +313,11 @@ in order to expand or compress the tonal range displayed."
             ((t (:foreground ,yellow :weight ,bold :slant ,italic))))
            (message-header-subject ((t (:foreground ,base00))))
            (message-header-cc ((t (:foreground ,green :weight ,bold))))
-           (message-header-to ((t (:foreground ,base1 :weight ,bold)))))
+           (message-header-to ((t (:foreground ,base1 :weight ,bold))))
+	   ;; Flyspell
+	   (flyspell-incorrect ((t (:inherit '(font-lock-warning-face) :underline t))))
+	   (flyspell-incorrect ((t (:inherit '(font-lock-warning-face) :underline t))))
+	   )
           ((foreground-color . ,base0)
            (background-color . ,base03)
            (background-mode . ,mode)
