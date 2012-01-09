@@ -224,6 +224,7 @@ in order to expand or compress the tonal range displayed."
             ((t (:foreground ,green :background ,base03))))
            (org-delegated-kwd-face
             ((t (:foreground ,cyan :background ,base03))))
+	   (org-table ((t (:foreground ,cyan))))
            ;; show-paren
            (show-paren-match-face ((t (:background ,cyan :foreground ,base3))))
            (show-paren-mismatch-face
