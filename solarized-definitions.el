@@ -316,8 +316,15 @@ in order to expand or compress the tonal range displayed."
            (message-header-cc ((t (:foreground ,green :weight ,bold))))
            (message-header-to ((t (:foreground ,base1 :weight ,bold))))
 	   ;; Flyspell
-	   (flyspell-incorrect ((t (:inherit '(font-lock-warning-face) :underline t))))
-	   (flyspell-incorrect ((t (:inherit '(font-lock-warning-face) :underline t))))
+	   (flyspell-incorrect ((t (:inherit font-lock-warning-face :underline t))))
+	   (flyspell-incorrect ((t (:inherit font-lock-warning-face :underline t))))
+	   ;; Python
+	   (py-builtins-face ((t (:inherit font-lock-special-keyword-face))))
+	   (py-decorators-face ((t (:inherit font-lock-special-keyword-face))))
+	   (py-pseudo-keyword-face ((t (:inherit font-lock-special-keyword-face))))
+           (py-XXX-tag-face ((t (:foreground ,base03 :background ,red :weight ,bold))))
+	   ;; YAML
+	   (yaml-tab-face ((t (:inherit whitespace-tab))))
 	   )
           ((foreground-color . ,base0)
            (background-color . ,base03)
