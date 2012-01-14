@@ -315,9 +315,9 @@ in order to expand or compress the tonal range displayed."
            (message-header-subject ((t (:foreground ,base00))))
            (message-header-cc ((t (:foreground ,green :weight ,bold))))
            (message-header-to ((t (:foreground ,base1 :weight ,bold))))
-	   ;; Flyspell
+	   ;; Flyspell 
 	   (flyspell-incorrect ((t (:inherit font-lock-warning-face :underline t))))
-	   (flyspell-incorrect ((t (:inherit font-lock-warning-face :underline t))))
+	   (flyspell-duplicate ((t (:inherit font-lock-warning-face :underline t))))
 	   ;; Python
 	   (py-builtins-face ((t (:inherit font-lock-special-keyword-face))))
 	   (py-decorators-face ((t (:inherit font-lock-special-keyword-face))))
