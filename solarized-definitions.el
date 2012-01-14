@@ -208,6 +208,8 @@ in order to expand or compress the tonal range displayed."
            (info-xref ((t (:foreground ,blue :underline ,underline))))
            (info-xref-visited ((t (:inherit info-xref :foreground ,magenta))))
            ;; org
+	   (org-document-title ((t (:inherit header-line))))
+	   (org-special-keyword ((t (:inherit font-lock-special-keyword-face))))
            (org-hide ((t (:foreground ,base03))))
            (org-todo ((t (:foreground ,base03 :background ,red :weight ,bold))))
            (org-done ((t (:foreground ,green :weight ,bold))))
