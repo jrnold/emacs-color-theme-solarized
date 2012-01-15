@@ -210,6 +210,8 @@ in order to expand or compress the tonal range displayed."
            ;; org
 	   (org-document-title ((t (:inherit header-line))))
 	   (org-special-keyword ((t (:inherit font-lock-special-keyword-face))))
+	   (org-link ((t (:inherit link))))
+	   (org-footnote ((t (:inherit link))))
            (org-hide ((t (:foreground ,base03))))
            (org-todo ((t (:foreground ,base03 :background ,red :weight ,bold))))
            (org-done ((t (:foreground ,green :weight ,bold))))
