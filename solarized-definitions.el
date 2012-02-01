@@ -71,7 +71,7 @@ in order to expand or compress the tonal range displayed."
 
 (defun solarized-color-definitions (mode)
   (flet ((find-color (name)
-           (let ((index (if window-system
+           (let ((index (if (or window-system (daemonp))
                             (if solarized-degrade
                                 3
 			      2)
