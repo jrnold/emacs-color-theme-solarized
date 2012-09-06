@@ -11,6 +11,12 @@ degraded color mode to test the approximate color values for accuracy."
   :type 'boolean
   :group 'solarized)
 
+(defcustom solarized-diff-mode 'normal
+  "Sets the level of highlighting to use in diff-like modes."
+  :type 'symbol
+  :options '(high normal low)
+  :group 'solarized)
+
 (defcustom solarized-bold t
   "Stops Solarized from displaying bold when nil."
   :type 'boolean
@@ -26,45 +32,46 @@ degraded color mode to test the approximate color values for accuracy."
   :type 'boolean
   :group 'solarized)
 
-(defcustom solarized-termcolors 16
-  "This setting applies to emacs in terminal (non-GUI) mode.
-If set to 16, emacs will use the terminal emulator's colorscheme (best option as
-long as you've set your emulator's colors to the Solarized palette). If set to
-256 and your terminal is capable of displaying 256 colors, emacs will use the
-256 degraded color mode."
-  :type 'integer
-  :options '(16 256)
-  :group 'solarized)
-
 (defcustom solarized-contrast 'normal
   "Stick with normal! It's been carefully tested. Setting this option to high or
-low does use the same Solarized palette but simply shifts some values up or down
-in order to expand or compress the tonal range displayed."
+low does use the same Solarized palette but simply shifts some values up or
+down in order to expand or compress the tonal range displayed."
   :type 'symbol
   :options '(high normal low)
+  :group 'solarized)
+
+(defcustom solarized-broken-srgb (if (and (eq system-type 'darwin)
+                                          (eq window-system 'ns))
+                                     t
+                                   nil)
+  "Emacs bug #8402 results in incorrect color handling on Macs. If this is t
+\(the default on Macs), Solarized works around it with alternative colors.
+However, these colors are not totally portable, so you may be able to edit
+the \"Gen RGB\" column in solarized-definitions.el to improve them further."
+  :type 'boolean
   :group 'solarized)
 
 ;; FIXME: The Generic RGB colors will actually vary from device to device, but
 ;;        hopefully these are closer to the intended colors than the sRGB values
 ;;        that Emacs seems to dislike
-(defvar solarized-colors
-  ;; name    sRGB      Gen RGB   degraded  ANSI(Solarized terminal)
-  '((base03  "#002b36" "#042028" "#1c1c1c" "#7f7f7f")
-    (base02  "#073642" "#0a2832" "#262626" "#000000")
-    (base01  "#586e75" "#465a61" "#4e4e4e" "#00ff00")
-    (base00  "#657b83" "#52676f" "#585858" "#ffff00")
-    (base0   "#839496" "#708183" "#808080" "#5c5cff")
-    (base1   "#93a1a1" "#81908f" "#8a8a8a" "#00ffff")
-    (base2   "#eee8d5" "#e9e2cb" "#d7d7af" "#e5e5e5")
-    (base3   "#fdf6e3" "#fcf4dc" "#ffffd7" "#ffffff")
-    (yellow  "#b58900" "#a57705" "#af8700" "#cdcd00")
-    (orange  "#cb4b16" "#bd3612" "#d75f00" "#ff0000")
-    (red     "#dc322f" "#c60007" "#af0000" "#cd0000")
-    (magenta "#d33682" "#c61b6e" "#af005f" "#cd00cd")
-    (violet  "#6c71c4" "#5859b7" "#5f5faf" "#ff00ff")
-    (blue    "#268bd2" "#2075c7" "#0087ff" "#0000ee")
-    (cyan    "#2aa198" "#259185" "#00afaf" "#00cdcd")
-    (green   "#859900" "#728a05" "#5f8700" "#00cd00"))
+(defvar solarized-colors           ; ANSI(Solarized terminal)
+  ;; name     sRGB      Gen RGB   256       16              8
+  '((base03  "#002b36" "#042028" "#1c1c1c" "brightblack"   "black")
+    (base02  "#073642" "#0a2832" "#262626" "black"         "black")
+    (base01  "#586e75" "#465a61" "#585858" "brightgreen"   "green")
+    (base00  "#657b83" "#52676f" "#626262" "brightyellow"  "yellow")
+    (base0   "#839496" "#708183" "#808080" "brightblue"    "blue")
+    (base1   "#93a1a1" "#81908f" "#8a8a8a" "brightcyan"    "cyan")
+    (base2   "#eee8d5" "#e9e2cb" "#e4e4e4" "white"         "white")
+    (base3   "#fdf6e3" "#fcf4dc" "#ffffd7" "brightwhite"   "white")
+    (yellow  "#b58900" "#a57705" "#af8700" "yellow"        "yellow")
+    (orange  "#cb4b16" "#bd3612" "#d75f00" "brightred"     "red")
+    (red     "#dc322f" "#c60007" "#d70000" "red"           "red")
+    (magenta "#d33682" "#c61b6e" "#af005f" "magenta"       "magenta")
+    (violet  "#6c71c4" "#5859b7" "#5f5faf" "brightmagenta" "magenta")
+    (blue    "#268bd2" "#2075c7" "#0087ff" "blue"          "blue")
+    (cyan    "#2aa198" "#259185" "#00afaf" "cyan"          "cyan")
+    (green   "#859900" "#728a05" "#5f8700" "green"         "green"))
   "This is a table of all the colors used by the Solarized color theme. Each
    column is a different set, one of which will be chosen based on term
    capabilities, etc.")
@@ -79,33 +86,36 @@ in order to expand or compress the tonal range displayed."
 			      3
 			    4))))
              (nth index (assoc name solarized-colors)))))
-    (let ((base03    (find-color 'base03))
-          (base02    (find-color 'base02))
-          (base01    (find-color 'base01))
-          (base00    (find-color 'base00))
-          (base0     (find-color 'base0))
-          (base1     (find-color 'base1))
-          (base2     (find-color 'base2))
-          (base3     (find-color 'base3))
-          (yellow    (find-color 'yellow))
-          (orange    (find-color 'orange))
-          (red       (find-color 'red))
-          (magenta   (find-color 'magenta))
-          (violet    (find-color 'violet))
-          (blue      (find-color 'blue))
-          (cyan      (find-color 'cyan))
-          (green     (find-color 'green))
-          (bold      (if solarized-bold 'bold 'normal))
-          (underline (if solarized-underline t nil))
-          (opt-under nil)
-          (italic    (if solarized-italic 'italic 'normal)))
+    (let ((base03      (find-color 'base03))
+          (base02      (find-color 'base02))
+          (base01      (find-color 'base01))
+          (base00      (find-color 'base00))
+          (base0       (find-color 'base0))
+          (base1       (find-color 'base1))
+          (base2       (find-color 'base2))
+          (base3       (find-color 'base3))
+          (yellow      (find-color 'yellow))
+          (orange      (find-color 'orange))
+          (red         (find-color 'red))
+          (magenta     (find-color 'magenta))
+          (violet      (find-color 'violet))
+          (blue        (find-color 'blue))
+          (cyan        (find-color 'cyan))
+          (green       (find-color 'green))
+          (bold        (if solarized-bold 'bold 'normal))
+          (bright-bold (if solarized-bold 'normal 'bold))
+          (underline   (if solarized-underline t nil))
+          (opt-under   nil)
+          (italic      (if solarized-italic 'italic 'normal)))
       (when (eq 'light mode)
         (rotatef base03 base3)
         (rotatef base02 base2)
         (rotatef base01 base1)
         (rotatef base00 base0))
       (let ((back base03))
-        (cond ((eq 'high solarized-contrast)
+        (cond ((< (display-color-cells) 16)
+               (setf back nil))
+              ((eq 'high solarized-contrast)
                (let ((orig-base3 base3))
                  (rotatef base01 base00 base0 base1 base2 base3)
                  (setf base3 orig-base3)))
@@ -365,5 +375,10 @@ in order to expand or compress the tonal range displayed."
        (apply 'custom-theme-set-variables ',theme-name ',theme-vars)
        (apply 'custom-theme-set-faces ',theme-name ',theme-faces)
        (provide-theme ',theme-name))))
+
+;;;###autoload
+(when (boundp 'custom-theme-load-path)
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide 'solarized-definitions)
