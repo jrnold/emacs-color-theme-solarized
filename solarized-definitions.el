@@ -537,6 +537,8 @@ the \"Gen RGB\" column in solarized-definitions.el to improve them further."
              ;;font-latex
              (font-latex-warning-face ((t (,@fg-red))))
              (font-latex-sectioning-5-face ((t (,@fg-violet))))
+             (font-latex-sedate-face ((t (,@fg-base01))))
+             (font-latex-math-face ((t (,@fg-base1))))
              ;;flyspell
              (flyspell-incorrect ((t (,@fg-red))))
              (flyspell-duplicate ((t (,@fg-yellow))))
