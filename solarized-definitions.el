@@ -297,7 +297,7 @@ the \"Gen RGB\" column in solarized-definitions.el to improve them further."
              (font-lock-builtin-face ((t (,@fmt-none ,@fg-green)))) ; Statement
              (font-lock-comment-face ((t (,@fmt-ital ,@fg-base01)))) ; Comment
              (font-lock-constant-face ((t (,@fmt-none ,@fg-cyan)))) ; Constant
-             (font-lock-function-name-face ; Identifier
+             (font-lock-pfunction-name-face ; Identifier
               ((t (,@fmt-none ,@fg-blue))))
              (font-lock-keyword-face ((t (,@fmt-none ,@fg-green)))) ; Statement
              (font-lock-string-face ((t (,@fmt-none ,@fg-cyan)))) ; Constant
@@ -567,7 +567,11 @@ the \"Gen RGB\" column in solarized-definitions.el to improve them further."
 	     (term-color-blue ((t ( ,@fg-blue))))
 	     (term-color-magenta ((t ( ,@fg-magenta))))
 	     (term-color-cyan ((t ( ,@fg-cyan))))
-	     (term-color-white ((t ( ,@fg-base00)))))
+	     (term-color-white ((t ( ,@fg-base00))))
+	     ;;sh-mode
+	     (sh-quoted-exec ((t ( ,@fg-magenta))))	     
+	     (sh-heredoc ((t (:inherit font-lock-string-face))
+	     )
 
             ((foreground-color . ,(when (<= 16 (display-color-cells)) base0))
              (background-color . ,back)
