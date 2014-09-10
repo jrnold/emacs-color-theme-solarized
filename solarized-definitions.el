@@ -570,7 +570,7 @@ the \"Gen RGB\" column in solarized-definitions.el to improve them further."
 	     (term-color-white ((t ( ,@fg-base00))))
 	     ;;sh-mode
 	     (sh-quoted-exec ((t ( ,@fg-magenta))))	     
-	     (sh-heredoc ((t (:inherit font-lock-string-face))
+	     (sh-heredoc ((t (:inherit font-lock-string-face))))
 	     )
 
             ((foreground-color . ,(when (<= 16 (display-color-cells)) base0))
