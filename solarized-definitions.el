@@ -297,7 +297,7 @@ the \"Gen RGB\" column in solarized-definitions.el to improve them further."
              (font-lock-builtin-face ((t (,@fmt-none ,@fg-green)))) ; Statement
              (font-lock-comment-face ((t (,@fmt-ital ,@fg-base01)))) ; Comment
              (font-lock-constant-face ((t (,@fmt-none ,@fg-cyan)))) ; Constant
-             (font-lock-pfunction-name-face ; Identifier
+             (font-lock-function-name-face ; Identifier
               ((t (,@fmt-none ,@fg-blue))))
              (font-lock-keyword-face ((t (,@fmt-none ,@fg-green)))) ; Statement
              (font-lock-string-face ((t (,@fmt-none ,@fg-cyan)))) ; Constant
